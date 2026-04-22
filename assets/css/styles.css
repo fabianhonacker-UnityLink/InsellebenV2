@@ -621,7 +621,7 @@ body{
 body::before{
   background:
     linear-gradient(180deg, rgba(8,5,14,.42), rgba(8,5,14,.82)),
-    var(--global-page-image, url("../media/bg-default.webp")) center/cover no-repeat;
+    var(--global-page-image, url("../media/bg-home-beach-violet-v2.webp")) center/cover no-repeat;
   opacity:.34;
 }
 body::after{

@@ -576,15 +576,15 @@ h3{font-size:1.08rem !important;margin-bottom:8px !important;}
   pointer-events:none;
   z-index:-1;
   background:
-    radial-gradient(circle at 10% 0%, rgba(160,92,255,.18), transparent 12%),
-    radial-gradient(circle at 34% 0%, rgba(190,95,255,.14), transparent 10%),
-    radial-gradient(circle at 58% 0%, rgba(255,118,188,.12), transparent 11%),
-    radial-gradient(circle at 86% 0%, rgba(255,154,61,.10), transparent 10%),
-    linear-gradient(180deg, rgba(53,163,255,0) 0%, rgba(160,92,255,.42) 10%, rgba(160,92,255,.10) 23%, rgba(53,163,255,0) 56%) 10% 0/3px 100% no-repeat,
-    linear-gradient(180deg, rgba(53,163,255,0) 0%, rgba(190,95,255,.28) 11%, rgba(190,95,255,.08) 25%, rgba(53,163,255,0) 54%) 34% 0/2px 100% no-repeat,
-    linear-gradient(180deg, rgba(53,163,255,0) 0%, rgba(255,118,188,.32) 9%, rgba(255,118,188,.08) 24%, rgba(53,163,255,0) 55%) 58% 0/3px 100% no-repeat,
-    linear-gradient(180deg, rgba(53,163,255,0) 0%, rgba(255,154,61,.24) 12%, rgba(190,95,255,.08) 26%, rgba(53,163,255,0) 57%) 86% 0/2px 100% no-repeat;
-  filter:drop-shadow(0 0 14px rgba(170,90,255,.28)) drop-shadow(0 0 32px rgba(255,154,61,.10));
+    radial-gradient(circle at 10% 0%, rgba(46,161,255,.32), transparent 12%),
+    radial-gradient(circle at 34% 0%, rgba(46,161,255,.22), transparent 10%),
+    radial-gradient(circle at 58% 0%, rgba(46,161,255,.28), transparent 11%),
+    radial-gradient(circle at 86% 0%, rgba(46,161,255,.24), transparent 10%),
+    linear-gradient(180deg, rgba(53,163,255,0) 0%, rgba(53,163,255,.95) 10%, rgba(53,163,255,.18) 23%, rgba(53,163,255,0) 56%) 10% 0/3px 100% no-repeat,
+    linear-gradient(180deg, rgba(53,163,255,0) 0%, rgba(53,163,255,.8) 11%, rgba(53,163,255,.14) 25%, rgba(53,163,255,0) 54%) 34% 0/2px 100% no-repeat,
+    linear-gradient(180deg, rgba(53,163,255,0) 0%, rgba(53,163,255,.9) 9%, rgba(53,163,255,.16) 24%, rgba(53,163,255,0) 55%) 58% 0/3px 100% no-repeat,
+    linear-gradient(180deg, rgba(53,163,255,0) 0%, rgba(53,163,255,.82) 12%, rgba(53,163,255,.14) 26%, rgba(53,163,255,0) 57%) 86% 0/2px 100% no-repeat;
+  filter:drop-shadow(0 0 14px rgba(46,161,255,.75)) drop-shadow(0 0 32px rgba(46,161,255,.24));
   opacity:.9;
   animation:ilrpBoltPulse 6.2s linear infinite;
 }
@@ -1022,7 +1022,7 @@ body::after{
 .page-home::before{
   background:
     linear-gradient(180deg, rgba(10,7,18,.36), rgba(10,7,18,.78)),
-    var(--global-page-image, url("../media/bg-home-beach-purple-fix-v3.png")) center/cover no-repeat !important;
+    var(--global-page-image, url("../media/bg-default.webp")) center/cover no-repeat !important;
   opacity:.34 !important;
 }
 .page-home::after{
@@ -1042,4 +1042,44 @@ body::after{
   background:
     linear-gradient(180deg, rgba(12,8,21,.34), rgba(12,8,21,.84)),
     var(--hero-image) center/cover no-repeat !important;
+}
+
+
+/* Hero buttons: transparent with violet-orange gradient outline */
+.page-home .hero-buttons-centered .hero-main-button{
+  position:relative;
+  min-width:340px !important;
+  min-height:56px !important;
+  color:var(--text) !important;
+  border:1px solid transparent !important;
+  background:
+    linear-gradient(rgba(14,9,22,.18), rgba(14,9,22,.18)) padding-box,
+    linear-gradient(135deg, var(--violet), var(--orange)) border-box !important;
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.20),
+    0 0 0 1px rgba(255,255,255,.03),
+    0 0 24px rgba(139,92,255,.16) !important;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.page-home .hero-buttons-centered .hero-main-button:hover{
+  transform:translateY(-2px) !important;
+  background:
+    linear-gradient(rgba(18,12,29,.26), rgba(18,12,29,.26)) padding-box,
+    linear-gradient(135deg, var(--violet), var(--orange)) border-box !important;
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.24),
+    0 0 34px rgba(139,92,255,.22),
+    0 0 56px rgba(255,154,61,.10) !important;
+}
+.page-home .hero-buttons-centered .button-primary,
+.page-home .hero-buttons-centered .button-secondary{
+  border-color:transparent !important;
+  color:var(--text) !important;
+}
+@media (max-width: 760px){
+  .page-home .hero-buttons-centered .hero-main-button{
+    min-width:0 !important;
+    width:100% !important;
+  }
 }

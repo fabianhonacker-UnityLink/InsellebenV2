@@ -1,5 +1,5 @@
 (() => {
-  const DBG_VERSION = 'DBG-15';
+  const DBG_VERSION = 'DBG-16';
   const mobileToggle = document.querySelector('.mobile-menu-toggle');
   if (mobileToggle) {
     mobileToggle.addEventListener('click', () => document.body.classList.toggle('menu-open'));
@@ -93,34 +93,53 @@
     const byLabel = (name) => cards.find(card => card.querySelector('.stat-label')?.textContent?.trim().toLowerCase() === name.toLowerCase());
     const serverCard = byLabel('Serverstatus');
     const discordCard = byLabel('Discord Online');
+    const joinCard = byLabel('Join-Link');
     const fiveMCode = 'yg8z9k';
     const discordInvite = 'YhVeud3Suz';
 
+    if (joinCard) joinCard.remove();
+
     if (serverCard) {
+      const strong = serverCard.querySelector('strong');
+      const copy = serverCard.querySelector('p');
       try {
         const res = await fetch(`https://servers-frontend.fivem.net/api/servers/single/${fiveMCode}`);
         const data = await res.json();
         const players = data?.Data?.clients ?? 0;
         const max = data?.Data?.sv_maxclients ?? 64;
-        const name = data?.Data?.hostname?.replace(/\^\d/g, '').trim() || 'Inselleben RP V2';
-        serverCard.querySelector('strong').textContent = `${players} / ${max} Spieler online`;
-        serverCard.querySelector('p').textContent = `${name} ist erreichbar. Join-Code: ${fiveMCode}`;
+        strong.innerHTML = `<span class="status-dot is-live"></span>${players} / ${max} Spieler online`;
+        if (copy) {
+          copy.textContent = '';
+          copy.style.display = 'none';
+        }
       } catch (e) {
-        serverCard.querySelector('strong').textContent = 'Live-Anbindung folgt';
-        serverCard.querySelector('p').textContent = `Direkter FiveM-Einstieg ist erreichbar über: ${fiveMCode}`;
+        strong.textContent = 'Live-Anbindung folgt';
+        if (copy) {
+          copy.textContent = `Direkter FiveM-Einstieg ist erreichbar über: ${fiveMCode}`;
+          copy.style.display = '';
+        }
       }
     }
 
     if (discordCard) {
+      const strong = discordCard.querySelector('strong');
+      const copy = discordCard.querySelector('p');
       try {
         const res = await fetch(`https://discord.com/api/v9/invites/${discordInvite}?with_counts=true`);
         const data = await res.json();
+        const online = data?.approximate_presence_count ?? 42;
         const total = data?.approximate_member_count ?? 250;
-        discordCard.querySelector('strong').textContent = `${total} Mitglieder insgesamt`;
-        discordCard.querySelector('p').textContent = 'Discord-Community von Inselleben RP V2.';
+        strong.textContent = `${online} / ${total} Mitglieder online`;
+        if (copy) {
+          copy.textContent = '';
+          copy.style.display = 'none';
+        }
       } catch (e) {
-        discordCard.querySelector('strong').textContent = '250 Mitglieder insgesamt';
-        discordCard.querySelector('p').textContent = 'Discord-Community von Inselleben RP V2.';
+        strong.textContent = '42 / 250 Mitglieder online';
+        if (copy) {
+          copy.textContent = '';
+          copy.style.display = 'none';
+        }
       }
     }
   }
@@ -142,5 +161,5 @@
     document.body.appendChild(badge);
   }
   const bgName = getComputedStyle(document.body).getPropertyValue('--hero-image')?.match(/([^/']+\.(?:png|webp|jpg))/i)?.[1] || 'n/a';
-  badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg15</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
+  badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg16</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
 })();

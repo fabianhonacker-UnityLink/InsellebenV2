@@ -1102,7 +1102,7 @@ body::after{
 }
 
 
-/* === DBG-15 FINAL MERGE OVERRIDES === */
+/* === DBG-16 LIVE MERGE OVERRIDES === */
 .glass-card,
 .rule-item,
 .steps-grid article,
@@ -1188,8 +1188,9 @@ body::after{
 .page-rules .inner-hero h1,
 .page-team .inner-hero h1,
 .page-imprint .inner-hero h1{
-  width: min(100%, 14ch) !important;
-  max-width: 14ch !important;
+  width: min(100%, 860px) !important;
+  max-width: 860px !important;
+  text-wrap: balance !important;
   margin: 0 auto 18px !important;
   text-align: center !important;
   line-height: .98 !important;
@@ -1244,4 +1245,50 @@ body::after{
     max-width:11ch !important;
   }
   .debug-badge{font-size:11px; left:8px; right:8px; max-width:none;}
+}
+
+
+/* === DBG-16 START CARD / SUBPAGE CENTER FIX === */
+.page-home .stats-grid{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}
+.page-home .stat-card{min-height:136px !important;}
+.page-home .stat-card strong{display:flex !important;align-items:center !important;gap:10px !important;margin-bottom:0 !important;}
+.page-home .stat-card p:empty{display:none !important;}
+.status-dot{width:11px;height:11px;border-radius:999px;display:inline-block;flex:0 0 11px;}
+.status-dot.is-live{background:#19d37d;box-shadow:0 0 0 3px rgba(25,211,125,.12),0 0 18px rgba(25,211,125,.42);}
+
+.page-philo .inner-hero h1,
+.page-history .inner-hero h1,
+.page-rules .inner-hero h1,
+.page-team .inner-hero h1,
+.page-imprint .inner-hero h1{
+  width:min(100%, 860px) !important;
+  max-width:860px !important;
+  margin:0 auto 18px !important;
+  text-align:center !important;
+  text-wrap:balance !important;
+}
+.page-philo .inner-hero .container.narrow,
+.page-history .inner-hero .container.narrow,
+.page-rules .inner-hero .container.narrow,
+.page-team .inner-hero .container.narrow,
+.page-imprint .inner-hero .container.narrow{
+  width:min(100%, 980px) !important;
+  max-width:980px !important;
+  margin:0 auto !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+}
+@media (max-width: 1200px){
+  .page-home .stats-grid{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}
+}
+@media (max-width: 900px){
+  .page-home .stats-grid{grid-template-columns:1fr !important;}
+  .page-philo .inner-hero h1,
+  .page-history .inner-hero h1,
+  .page-rules .inner-hero h1,
+  .page-team .inner-hero h1,
+  .page-imprint .inner-hero h1{max-width:16ch !important;}
 }

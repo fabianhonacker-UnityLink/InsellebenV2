@@ -1701,3 +1701,105 @@ body::after{
     font-size:1.28rem;
   }
 }
+
+
+/* === DBG-22 DISCORD PANEL REAL PNG VISIBLE === */
+.page-home .stat-card[data-stat-card="discord"]{
+  min-height:182px !important;
+  padding:18px 18px 16px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:flex-end !important;
+  position:relative !important;
+  overflow:hidden !important;
+  isolation:isolate !important;
+  background:linear-gradient(180deg, rgba(16,10,34,.54), rgba(12,8,24,.68)) !important;
+  border:1px solid rgba(220,190,255,.18) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 18px 36px rgba(0,0,0,.22), 0 0 30px rgba(124,58,237,.10) !important;
+}
+.page-home .stat-card[data-stat-card="discord"]::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(115deg, rgba(12,7,24,.92) 0%, rgba(12,7,24,.78) 32%, rgba(12,7,24,.36) 58%, rgba(12,7,24,.18) 100%),
+    radial-gradient(circle at 16% 18%, rgba(255,183,93,.16), transparent 28%),
+    radial-gradient(circle at 86% 72%, rgba(168,85,247,.24), transparent 36%),
+    var(--discord-bg, url("../media/discord-panel-bg-dbg22.png")) right -16px center / auto 128% no-repeat !important;
+  opacity:.98 !important;
+  filter:saturate(1.02) contrast(1.02) brightness(.98) !important;
+  z-index:-2;
+}
+.page-home .stat-card[data-stat-card="discord"]::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.008)),
+    linear-gradient(120deg, rgba(148,93,255,.06), transparent 44%, rgba(255,154,61,.05) 100%);
+  backdrop-filter:blur(2px) saturate(1.02);
+  -webkit-backdrop-filter:blur(2px) saturate(1.02);
+  z-index:-1;
+}
+.page-home .stat-card[data-stat-card="discord"] .stat-label,
+.page-home .stat-card[data-stat-card="discord"] strong,
+.page-home .stat-card[data-stat-card="discord"] p{
+  position:relative;
+  z-index:2;
+}
+.page-home .stat-card[data-stat-card="discord"] .stat-label{
+  margin-bottom:auto !important;
+  max-width:42% !important;
+}
+.page-home .stat-card[data-stat-card="discord"] strong{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  gap:8px !important;
+  margin:0 !important;
+}
+.page-home .stat-card[data-stat-card="discord"] .discord-count-number{
+  font-size:2.05rem !important;
+  line-height:1 !important;
+  font-weight:900 !important;
+  letter-spacing:-.04em !important;
+  text-shadow:0 8px 24px rgba(0,0,0,.35) !important;
+}
+.page-home .stat-card[data-stat-card="discord"] .discord-count-copy{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:8px !important;
+  font-size:.88rem !important;
+  letter-spacing:.18em !important;
+  text-transform:uppercase !important;
+  color:#f4e8ff !important;
+  opacity:.96 !important;
+}
+.page-home .stat-card[data-stat-card="discord"] .discord-count-copy::before{
+  content:"";
+  width:10px;
+  height:10px;
+  border-radius:999px;
+  background:#16e49b;
+  box-shadow:0 0 14px rgba(22,228,155,.46);
+  flex:0 0 auto;
+}
+.page-home .stat-card[data-stat-card="discord"] p{
+  display:none !important;
+}
+.page-home .stat-card[data-stat-card="discord"]:hover::before{
+  background-size:auto 136% !important;
+  filter:saturate(1.06) contrast(1.04) brightness(1.02) !important;
+}
+@media (max-width: 900px){
+  .page-home .stat-card[data-stat-card="discord"]{
+    min-height:170px !important;
+  }
+  .page-home .stat-card[data-stat-card="discord"]::before{
+    background-size:auto 120% !important;
+    background-position:right -26px center !important;
+  }
+  .page-home .stat-card[data-stat-card="discord"] .discord-count-number{
+    font-size:1.78rem !important;
+  }
+}

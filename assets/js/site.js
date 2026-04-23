@@ -1,5 +1,5 @@
 (() => {
-  const DBG_VERSION = 'DBG-19';
+  const DBG_VERSION = 'DBG-22';
   const mobileToggle = document.querySelector('.mobile-menu-toggle');
   if (mobileToggle) {
     mobileToggle.addEventListener('click', () => document.body.classList.toggle('menu-open'));
@@ -131,10 +131,10 @@
       const copy = discordCard.querySelector('p');
       if (strong) strong.innerHTML = `<span class="discord-count-number">${discordOnline} / ${discordTotal}</span><span class="discord-count-copy">Mitglieder online</span>`;
       if (copy) {
-        copy.textContent = 'Community live auf Discord';
-        copy.style.display = 'block';
+        copy.textContent = '';
+        copy.style.display = 'none';
       }
-      discordCard.style.setProperty('--discord-bg', "url('assets/media/discord-panel-bg-dbg19.webp')");
+      discordCard.style.setProperty('--discord-bg', "url('assets/media/discord-panel-bg-dbg22.png')");
     }
 
     let headerBadge = document.querySelector('.header-live-badge');
@@ -177,5 +177,5 @@
     document.body.appendChild(badge);
   }
   const bgName = getComputedStyle(document.body).getPropertyValue('--hero-image')?.match(/([^/']+\.(?:png|webp|jpg))/i)?.[1] || 'n/a';
-  badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg19</span><span>Discord-Panel mit Bildhintergrund aktiv</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
+  badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg22</span><span>Discord-Panel PNG sichtbar aktiv</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
 })();

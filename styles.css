@@ -45,7 +45,7 @@ body::before{
   inset:0;
   background:
     linear-gradient(180deg, rgba(7,9,16,.42), rgba(7,9,16,.82)),
-    var(--global-page-image, url("../media/bg-default.webp")) center/cover no-repeat;
+    var(--global-page-image, url("../media/inselleben.png")) center/cover no-repeat;
   opacity:.26;
   z-index:-2;
 }

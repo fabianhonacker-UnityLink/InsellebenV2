@@ -1100,3 +1100,136 @@ body::after{
   .page-home .hero-tagline-main{font-size:.88rem !important; letter-spacing:.16em !important; margin-top:0 !important;}
   .page-home .hero-main-button{min-width:0 !important; width:100% !important; min-height:50px !important;}
 }
+
+
+/* DBG-08 inner hero rollout for secondary pages */
+.page-philo .inner-hero,
+.page-history .inner-hero,
+.page-rules .inner-hero,
+.page-store .inner-hero,
+.page-team .inner-hero,
+.page-imprint .inner-hero{
+  width:min(calc(100% - 32px), 1240px) !important;
+  margin:28px auto 0 !important;
+  padding:34px 28px 16px !important;
+  text-align:center !important;
+}
+
+.page-philo .inner-hero .container.narrow,
+.page-history .inner-hero .container.narrow,
+.page-rules .inner-hero .container.narrow,
+.page-store .inner-hero .container.narrow,
+.page-team .inner-hero .container.narrow,
+.page-imprint .inner-hero .container.narrow{
+  width:min(calc(100% - 12px), 1060px) !important;
+  max-width:1060px !important;
+  margin:0 auto !important;
+}
+
+.page-philo .inner-hero .eyebrow,
+.page-history .inner-hero .eyebrow,
+.page-rules .inner-hero .eyebrow,
+.page-store .inner-hero .eyebrow,
+.page-team .inner-hero .eyebrow,
+.page-imprint .inner-hero .eyebrow{
+  text-align:center !important;
+  margin-bottom:16px !important;
+}
+
+.page-philo .inner-hero h1,
+.page-history .inner-hero h1,
+.page-rules .inner-hero h1,
+.page-store .inner-hero h1,
+.page-team .inner-hero h1,
+.page-imprint .inner-hero h1{
+  width:min(100%, 760px) !important;
+  max-width:760px !important;
+  margin:0 auto 18px !important;
+  text-align:center !important;
+  font-size:clamp(2.3rem, 4.9vw, 4.6rem) !important;
+  line-height:.98 !important;
+  letter-spacing:-.04em !important;
+  text-wrap:balance;
+}
+
+.page-philo .inner-hero .lead,
+.page-history .inner-hero .lead,
+.page-rules .inner-hero .lead,
+.page-store .inner-hero .lead,
+.page-team .inner-hero .lead,
+.page-imprint .inner-hero .lead{
+  width:min(100%, 900px) !important;
+  max-width:900px !important;
+  margin:0 auto !important;
+  text-align:center !important;
+  font-size:1.05rem !important;
+  line-height:1.72 !important;
+}
+
+@media (max-width: 1040px){
+  .page-philo .inner-hero,
+  .page-history .inner-hero,
+  .page-rules .inner-hero,
+  .page-store .inner-hero,
+  .page-team .inner-hero,
+  .page-imprint .inner-hero{
+    width:min(calc(100% - 20px), 1120px) !important;
+    padding:28px 20px 14px !important;
+  }
+
+  .page-philo .inner-hero h1,
+  .page-history .inner-hero h1,
+  .page-rules .inner-hero h1,
+  .page-store .inner-hero h1,
+  .page-team .inner-hero h1,
+  .page-imprint .inner-hero h1{
+    width:min(100%, 680px) !important;
+    max-width:680px !important;
+    font-size:clamp(2.05rem, 6.2vw, 3.5rem) !important;
+  }
+
+  .page-philo .inner-hero .lead,
+  .page-history .inner-hero .lead,
+  .page-rules .inner-hero .lead,
+  .page-store .inner-hero .lead,
+  .page-team .inner-hero .lead,
+  .page-imprint .inner-hero .lead{
+    width:min(100%, 760px) !important;
+    max-width:760px !important;
+  }
+}
+
+@media (max-width: 760px){
+  .page-philo .inner-hero,
+  .page-history .inner-hero,
+  .page-rules .inner-hero,
+  .page-store .inner-hero,
+  .page-team .inner-hero,
+  .page-imprint .inner-hero{
+    width:min(calc(100% - 16px), 1000px) !important;
+    padding:24px 16px 10px !important;
+  }
+
+  .page-philo .inner-hero h1,
+  .page-history .inner-hero h1,
+  .page-rules .inner-hero h1,
+  .page-store .inner-hero h1,
+  .page-team .inner-hero h1,
+  .page-imprint .inner-hero h1{
+    width:min(100%, 520px) !important;
+    max-width:520px !important;
+    font-size:clamp(1.95rem, 10vw, 2.9rem) !important;
+  }
+
+  .page-philo .inner-hero .lead,
+  .page-history .inner-hero .lead,
+  .page-rules .inner-hero .lead,
+  .page-store .inner-hero .lead,
+  .page-team .inner-hero .lead,
+  .page-imprint .inner-hero .lead{
+    width:min(100%, 540px) !important;
+    max-width:540px !important;
+    font-size:.98rem !important;
+    line-height:1.66 !important;
+  }
+}

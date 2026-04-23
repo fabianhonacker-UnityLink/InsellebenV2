@@ -1102,41 +1102,57 @@ body::after{
 }
 
 
-/* DBG05 philosophy hero alignment */
+/* DBG-06: Philosophie Hero zentriert und breiter */
+.debug-badge{
+  position:fixed;
+  left:12px;
+  bottom:12px;
+  z-index:9999;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  max-width:min(92vw, 1200px);
+  padding:8px 12px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(7,8,16,.82);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  box-shadow:0 12px 30px rgba(0,0,0,.28);
+  color:#fff;
+  font-size:.88rem;
+}
+.debug-badge strong{font-weight:800;color:#fff}
+.debug-badge span{color:var(--muted)}
+
 .page-philo .inner-hero{
-  padding-top: 28px;
-  padding-bottom: 18px;
+  text-align:center !important;
+  padding-top:38px !important;
+  padding-bottom:26px !important;
 }
 .page-philo .inner-hero .narrow{
-  width:min(calc(100% - 40px), 1160px);
-}
-.page-philo .inner-hero .eyebrow{
-  text-align:center;
+  width:min(calc(100% - 32px), 1120px) !important;
 }
 .page-philo .inner-hero h1{
-  max-width:13.5ch;
-  margin:0 auto 20px;
-  font-size:clamp(2.7rem, 5.2vw, 4.9rem);
-  line-height:0.98;
-  text-align:center;
-  text-wrap:balance;
+  max-width:13.5ch !important;
+  margin:0 auto 18px !important;
+  text-align:center !important;
+  font-size:clamp(3rem, 4.7vw, 5rem) !important;
+  line-height:.96 !important;
 }
 .page-philo .inner-hero .lead{
-  max-width:960px;
-  margin:0 auto;
-  text-align:center;
-  font-size:1.08rem;
-  line-height:1.7;
+  max-width:920px !important;
+  margin:0 auto !important;
+  text-align:center !important;
+  font-size:1.04rem !important;
+  line-height:1.72 !important;
 }
 @media (max-width: 900px){
-  .page-philo .inner-hero .narrow{
-    width:min(calc(100% - 28px), 920px);
-  }
+  .page-philo .inner-hero .narrow{width:min(calc(100% - 24px), 900px) !important;}
   .page-philo .inner-hero h1{
-    max-width:12ch;
-    font-size:clamp(2.3rem, 8vw, 4rem);
+    max-width:11ch !important;
+    font-size:clamp(2.4rem, 9vw, 4rem) !important;
   }
-  .page-philo .inner-hero .lead{
-    font-size:1rem;
-  }
+  .page-philo .inner-hero .lead{max-width:720px !important;font-size:1rem !important;}
 }

@@ -112,3 +112,122 @@
     }
   }
 })();
+
+
+(function(){
+  const updateDebugBadge = (lines) => {
+    const badge = document.querySelector('.debug-badge');
+    if (!badge) return;
+    badge.innerHTML = '';
+    lines.forEach((line, index) => {
+      const el = document.createElement(index === 0 ? 'strong' : 'span');
+      el.textContent = line;
+      badge.appendChild(el);
+    });
+  };
+
+  const findStatCard = (label) => {
+    const cards = Array.from(document.querySelectorAll('.stat-card'));
+    return cards.find((card) => card.querySelector('.stat-label')?.textContent?.trim() === label) || null;
+  };
+
+  const setCardState = (card, state) => {
+    if (!card) return;
+    card.classList.remove('is-live', 'is-error', 'is-loading');
+    if (state) card.classList.add(state);
+  };
+
+  const setCardContent = (card, strongHtml, text) => {
+    if (!card) return;
+    const strong = card.querySelector('strong');
+    const p = card.querySelector('p');
+    if (strong) strong.innerHTML = strongHtml;
+    if (p) p.textContent = text;
+  };
+
+  const extractDiscordCode = (input) => {
+    if (!input) return '';
+    const trimmed = input.trim();
+    const match = trimmed.match(/discord(?:app)?\.gg\/([^/?#]+)/i);
+    if (match) return match[1];
+    return trimmed.replace(/^\//, '');
+  };
+
+  const fetchFiveM = async (joinCode) => {
+    const response = await fetch(`https://servers-frontend.fivem.net/api/servers/single/${joinCode}`, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`FiveM ${response.status}`);
+    const payload = await response.json();
+    const data = payload?.Data || payload?.data || payload;
+    if (!data) throw new Error('FiveM payload empty');
+    const clients = Number.isFinite(data.clients) ? data.clients : Number.isFinite(data.selfReportedClients) ? data.selfReportedClients : null;
+    const maxClients = Number.isFinite(data.svMaxclients) ? data.svMaxclients : Number.isFinite(data.vars?.sv_maxClients) ? Number(data.vars.sv_maxClients) : null;
+    const hostname = data.hostname || data.vars?.sv_projectName || 'Inselleben RP';
+    return { clients, maxClients, hostname };
+  };
+
+  const fetchDiscord = async (inviteCode) => {
+    const response = await fetch(`https://discord.com/api/v9/invites/${inviteCode}?with_counts=true&with_expiration=true`, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`Discord ${response.status}`);
+    const payload = await response.json();
+    return {
+      online: payload?.approximate_presence_count ?? null,
+      members: payload?.approximate_member_count ?? null,
+      guildName: payload?.guild?.name || 'Discord'
+    };
+  };
+
+  const initHomeLiveStats = async () => {
+    if (!document.body.classList.contains('page-home')) return;
+
+    const joinCode = 'yg8z9k';
+    const discordCode = extractDiscordCode('https://discord.gg/YhVeud3Suz');
+    const serverCard = findStatCard('Serverstatus');
+    const discordCard = findStatCard('Discord Online');
+
+    setCardState(serverCard, 'is-loading');
+    setCardState(discordCard, 'is-loading');
+    setCardContent(serverCard, 'Lade Live-Daten …', 'Serverstatus wird gerade geprüft.');
+    setCardContent(discordCard, 'Lade Discord …', 'Discord-Zahlen werden gerade geprüft.');
+
+    let serverLine = 'Serverstatus: Fallback aktiv';
+    let discordLine = 'Discord: Fallback aktiv';
+
+    try {
+      const server = await fetchFiveM(joinCode);
+      const playersLine = server.clients != null && server.maxClients != null ? `${server.clients} / ${server.maxClients} Spieler online` : server.clients != null ? `${server.clients} Spieler online` : 'Server erreichbar';
+      setCardState(serverCard, 'is-live');
+      setCardContent(serverCard, `<span class="live-dot"></span>${playersLine}`, `${server.hostname} ist erreichbar. Join-Code: ${joinCode}`);
+      serverLine = `Serverstatus: ${playersLine}`;
+    } catch (error) {
+      setCardState(serverCard, 'is-error');
+      setCardContent(serverCard, `<span class="warn-dot"></span>Fallback aktiv`, 'Live-Status gerade nicht erreichbar. Join-Code bleibt verfügbar.');
+    }
+
+    try {
+      const discord = await fetchDiscord(discordCode);
+      const onlineLine = discord.online != null ? `${discord.online} online` : 'Discord erreichbar';
+      const memberLine = discord.members != null ? `${discord.members} Mitglieder aktuell im Server.` : 'Mitgliederzahl aktuell nicht verfügbar.';
+      setCardState(discordCard, 'is-live');
+      setCardContent(discordCard, `<span class="live-dot"></span>${onlineLine}`, `${memberLine} ${discord.guildName ? `Quelle: ${discord.guildName}.` : ''}`.trim());
+      discordLine = `Discord: ${onlineLine}`;
+    } catch (error) {
+      setCardState(discordCard, 'is-error');
+      setCardContent(discordCard, `<span class="warn-dot"></span>Fallback aktiv`, 'Discord-Zahlen gerade nicht erreichbar. Einladung bleibt verfügbar.');
+    }
+
+    updateDebugBadge([
+      'Debug-Build DBG-14',
+      'Live-Stats aktiv',
+      `FiveM: ${joinCode}`,
+      `Discord: ${discordCode}`,
+      serverLine,
+      discordLine
+    ]);
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHomeLiveStats);
+  } else {
+    initHomeLiveStats();
+  }
+})();

@@ -1,5 +1,5 @@
 (() => {
-  const DBG_VERSION = 'DBG-17';
+  const DBG_VERSION = 'DBG-18';
   const mobileToggle = document.querySelector('.mobile-menu-toggle');
   if (mobileToggle) {
     mobileToggle.addEventListener('click', () => document.body.classList.toggle('menu-open'));
@@ -86,61 +86,79 @@
     if (search) search.addEventListener('input', (event) => renderRules(event.target.value));
   }
 
+  
   // Live stats on start page
   async function updateLiveStats() {
-    if (!document.querySelector('.stats-grid')) return;
-    const cards = [...document.querySelectorAll('.stats-grid .stat-card')];
-    const byLabel = (name) => cards.find(card => card.querySelector('.stat-label')?.textContent?.trim().toLowerCase() === name.toLowerCase());
-    const serverCard = byLabel('Serverstatus');
-    const discordCard = byLabel('Discord Online');
+    if (!isStartPage) return;
+
     const fiveMCode = 'yg8z9k';
     const discordInvite = 'YhVeud3Suz';
 
-    if (serverCard) {
-      const strong = serverCard.querySelector('strong');
-      const copy = serverCard.querySelector('p');
-      try {
-        const res = await fetch(`https://servers-frontend.fivem.net/api/servers/single/${fiveMCode}`);
-        const data = await res.json();
-        const players = data?.Data?.clients ?? 0;
-        const max = data?.Data?.sv_maxclients ?? 64;
-        strong.innerHTML = `<span class="status-dot is-live"></span>${players} / ${max} Spieler online`;
-        if (copy) {
-          copy.textContent = '';
-          copy.style.display = 'none';
-        }
-      } catch (e) {
-        strong.textContent = 'Live-Anbindung folgt';
-        if (copy) {
-          copy.textContent = `Direkter FiveM-Einstieg ist erreichbar über: ${fiveMCode}`;
-          copy.style.display = '';
-        }
-      }
+    const spotlightCount = document.querySelector('.live-spotlight-count');
+    const spotlightStatus = document.querySelector('.live-spotlight-status');
+    const spotlightBar = document.querySelector('.live-spotlight-progress-bar');
+
+    const discordCard = document.querySelector('[data-stat-card="discord"]');
+
+    let serverPlayers = 0;
+    let serverMax = 64;
+    let discordOnline = 42;
+    let discordTotal = 250;
+
+    try {
+      const res = await fetch(`https://servers-frontend.fivem.net/api/servers/single/${fiveMCode}`);
+      const data = await res.json();
+      serverPlayers = Number(data?.Data?.clients ?? 0);
+      serverMax = Number(data?.Data?.sv_maxclients ?? 64);
+    } catch (e) {}
+
+    try {
+      const res = await fetch(`https://discord.com/api/v9/invites/${discordInvite}?with_counts=true`);
+      const data = await res.json();
+      discordOnline = Number(data?.approximate_presence_count ?? discordOnline);
+      discordTotal = Number(data?.approximate_member_count ?? discordTotal);
+    } catch (e) {}
+
+    if (spotlightCount) spotlightCount.textContent = `${serverPlayers} / ${serverMax}`;
+    if (spotlightStatus) spotlightStatus.textContent = serverPlayers > 0 ? 'Server online' : 'Server erreichbar';
+    if (spotlightBar) {
+      const pct = Math.max(4, Math.min(100, serverMax ? (serverPlayers / serverMax) * 100 : 0));
+      spotlightBar.style.width = `${pct}%`;
     }
 
     if (discordCard) {
       const strong = discordCard.querySelector('strong');
       const copy = discordCard.querySelector('p');
-      try {
-        const res = await fetch(`https://discord.com/api/v9/invites/${discordInvite}?with_counts=true`);
-        const data = await res.json();
-        const online = data?.approximate_presence_count ?? 42;
-        const total = data?.approximate_member_count ?? 250;
-        strong.textContent = `${online} / ${total} Mitglieder online`;
-        if (copy) {
-          copy.textContent = '';
-          copy.style.display = 'none';
-        }
-      } catch (e) {
-        strong.textContent = '42 / 250 Mitglieder online';
-        if (copy) {
-          copy.textContent = '';
-          copy.style.display = 'none';
-        }
+      if (strong) strong.textContent = `${discordOnline} / ${discordTotal} Mitglieder online`;
+      if (copy) {
+        copy.textContent = '';
+        copy.style.display = 'none';
       }
+    }
+
+    let headerBadge = document.querySelector('.header-live-badge');
+    const headerActions = document.querySelector('.header-actions');
+    if (!headerBadge && headerActions) {
+      headerBadge = document.createElement('a');
+      headerBadge.className = 'header-live-badge';
+      headerBadge.href = `https://cfx.re/join/${fiveMCode}`;
+      headerBadge.target = '_blank';
+      headerBadge.rel = 'noreferrer';
+      headerBadge.innerHTML = `
+        <span class="header-live-badge-logo"><img src="assets/media/logo-v4-cropped.png" alt="Inselleben RP Logo"></span>
+        <span class="header-live-badge-copy">
+          <span class="header-live-badge-state"><span class="status-dot is-live"></span>Server live</span>
+          <strong class="header-live-badge-value">0 / 64</strong>
+        </span>`;
+      headerActions.prepend(headerBadge);
+    }
+    if (headerBadge) {
+      const value = headerBadge.querySelector('.header-live-badge-value');
+      if (value) value.textContent = `${serverPlayers} / ${serverMax}`;
     }
   }
   if (isStartPage) updateLiveStats();
+
 
   // Debug badge on every page
   const pageMap = {
@@ -158,5 +176,5 @@
     document.body.appendChild(badge);
   }
   const bgName = getComputedStyle(document.body).getPropertyValue('--hero-image')?.match(/([^/']+\.(?:png|webp|jpg))/i)?.[1] || 'n/a';
-  badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg17</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
+  badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg18</span><span>Live-Server-Card + Header-Badge aktiv</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
 })();

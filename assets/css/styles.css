@@ -1196,3 +1196,51 @@ body::after{
 @media (max-width:760px){
   .debug-badge{font-size:.78rem; left:8px; right:8px; bottom:8px; max-width:none;}
 }
+
+
+/* DBG-10: echte transparente Glas-Panels */
+:root{
+  --panel-glass-a: rgba(144, 101, 255, .07);
+  --panel-glass-b: rgba(11, 10, 24, .22);
+  --panel-glass-c: rgba(255, 154, 61, .025);
+  --panel-glass-line: rgba(214, 191, 255, .16);
+  --panel-glass-hover-line: rgba(235, 214, 255, .28);
+  --panel-glass-shadow: 0 16px 40px rgba(4, 4, 14, .18);
+  --panel-glass-glow: 0 0 0 1px rgba(170, 118, 255, .06), 0 0 32px rgba(132, 89, 255, .08);
+  --panel-glass-hover-glow: 0 0 0 1px rgba(196, 144, 255, .12), 0 0 44px rgba(138, 92, 255, .16), 0 0 70px rgba(255, 154, 61, .06);
+}
+
+:is(.glass-card,.rule-section,.rule-item,.steps-grid article,.rules-toolbar,.rules-aside,.store-placeholder,.legal-card,.cta-panel){
+  background:
+    linear-gradient(135deg,
+      rgba(164, 111, 255, .065) 0%,
+      rgba(89, 54, 170, .055) 18%,
+      rgba(12, 10, 28, .24) 58%,
+      rgba(255, 154, 61, .028) 100%) !important;
+  border:1px solid var(--panel-glass-line) !important;
+  box-shadow:var(--panel-glass-shadow), var(--panel-glass-glow) !important;
+  backdrop-filter:blur(22px) saturate(145%) !important;
+  -webkit-backdrop-filter:blur(22px) saturate(145%) !important;
+}
+
+:is(.glass-card,.rule-section,.rule-item,.steps-grid article,.rules-toolbar,.rules-aside,.store-placeholder,.legal-card,.cta-panel)::after{
+  background:
+    radial-gradient(circle at 12% 0%, rgba(196, 160, 255, .06), transparent 22%),
+    radial-gradient(circle at 100% 100%, rgba(255, 154, 61, .035), transparent 24%) !important;
+  opacity:.82 !important;
+}
+
+:is(.glass-card,.rule-section,.rule-item,.steps-grid article,.rules-toolbar,.rules-aside,.store-placeholder,.legal-card,.cta-panel):hover{
+  background:
+    linear-gradient(135deg,
+      rgba(169, 112, 255, .11) 0%,
+      rgba(103, 62, 191, .09) 18%,
+      rgba(16, 13, 34, .30) 58%,
+      rgba(255, 154, 61, .04) 100%) !important;
+  border-color:var(--panel-glass-hover-line) !important;
+  box-shadow:0 20px 52px rgba(5, 4, 16, .24), var(--panel-glass-hover-glow) !important;
+}
+
+:is(.glass-card,.rule-section,.rule-item,.steps-grid article,.rules-toolbar,.rules-aside,.store-placeholder,.legal-card,.cta-panel):hover::before{
+  background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,0)) !important;
+}

@@ -1102,7 +1102,7 @@ body::after{
 }
 
 
-/* === DBG-16 LIVE MERGE OVERRIDES === */
+/* === DBG-17 LIVE MERGE OVERRIDES === */
 .glass-card,
 .rule-item,
 .steps-grid article,
@@ -1248,7 +1248,7 @@ body::after{
 }
 
 
-/* === DBG-16 START CARD / SUBPAGE CENTER FIX === */
+/* === DBG-17 START CARD / SUBPAGE CENTER FIX === */
 .page-home .stats-grid{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}
 .page-home .stat-card{min-height:136px !important;}
 .page-home .stat-card strong{display:flex !important;align-items:center !important;gap:10px !important;margin-bottom:0 !important;}
@@ -1291,4 +1291,61 @@ body::after{
   .page-rules .inner-hero h1,
   .page-team .inner-hero h1,
   .page-imprint .inner-hero h1{max-width:16ch !important;}
+}
+
+
+/* === DBG-17 FINAL CARD + SUBPAGE HERO CENTER === */
+.page-home .stats-grid{grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:12px !important;}
+.page-home .stat-card{min-height:132px !important;display:flex !important;flex-direction:column !important;justify-content:flex-start !important;}
+.page-home .stat-card strong{display:flex !important;align-items:center !important;gap:10px !important;margin-bottom:10px !important;}
+.page-home .stat-card p{display:block !important;margin-top:0 !important;}
+.page-home .stat-card p:empty{display:none !important;}
+.page-home .stat-card:nth-child(1) p,
+.page-home .stat-card:nth-child(2) p{display:none !important;}
+
+.page-philo .inner-hero .container.narrow,
+.page-history .inner-hero .container.narrow,
+.page-rules .inner-hero .container.narrow,
+.page-team .inner-hero .container.narrow,
+.page-imprint .inner-hero .container.narrow{
+  max-width:1180px !important;
+  width:min(100%,1180px) !important;
+  margin:0 auto !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+}
+.page-philo .inner-hero h1,
+.page-history .inner-hero h1,
+.page-rules .inner-hero h1,
+.page-team .inner-hero h1,
+.page-imprint .inner-hero h1{
+  max-width:12.5ch !important;
+  width:auto !important;
+  margin:0 auto 18px !important;
+  text-align:center !important;
+}
+.page-philo .inner-hero .lead,
+.page-history .inner-hero .lead,
+.page-rules .inner-hero .lead,
+.page-team .inner-hero .lead,
+.page-imprint .inner-hero .lead{
+  max-width:900px !important;
+  width:min(100%,900px) !important;
+  margin:0 auto !important;
+  text-align:center !important;
+}
+
+@media (max-width: 1280px){
+  .page-home .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+}
+@media (max-width: 760px){
+  .page-home .stats-grid{grid-template-columns:1fr !important;}
+  .page-philo .inner-hero h1,
+  .page-history .inner-hero h1,
+  .page-rules .inner-hero h1,
+  .page-team .inner-hero h1,
+  .page-imprint .inner-hero h1{max-width:10ch !important;}
 }

@@ -1,5 +1,5 @@
 (() => {
-  const DBG_VERSION = 'DBG-16';
+  const DBG_VERSION = 'DBG-17';
   const mobileToggle = document.querySelector('.mobile-menu-toggle');
   if (mobileToggle) {
     mobileToggle.addEventListener('click', () => document.body.classList.toggle('menu-open'));
@@ -93,11 +93,8 @@
     const byLabel = (name) => cards.find(card => card.querySelector('.stat-label')?.textContent?.trim().toLowerCase() === name.toLowerCase());
     const serverCard = byLabel('Serverstatus');
     const discordCard = byLabel('Discord Online');
-    const joinCard = byLabel('Join-Link');
     const fiveMCode = 'yg8z9k';
     const discordInvite = 'YhVeud3Suz';
-
-    if (joinCard) joinCard.remove();
 
     if (serverCard) {
       const strong = serverCard.querySelector('strong');
@@ -161,5 +158,5 @@
     document.body.appendChild(badge);
   }
   const bgName = getComputedStyle(document.body).getPropertyValue('--hero-image')?.match(/([^/']+\.(?:png|webp|jpg))/i)?.[1] || 'n/a';
-  badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg16</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
+  badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg17</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
 })();

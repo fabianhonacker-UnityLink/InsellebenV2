@@ -1,5 +1,5 @@
 (() => {
-  const DBG_VERSION = 'DBG-23';
+  const DBG_VERSION = 'DBG-24';
   const mobileToggle = document.querySelector('.mobile-menu-toggle');
   if (mobileToggle) {
     mobileToggle.addEventListener('click', () => document.body.classList.toggle('menu-open'));
@@ -94,16 +94,18 @@
     const fiveMCode = 'yg8z9k';
     const discordInvite = 'YhVeud3Suz';
 
-    const spotlightCount = document.querySelector('.live-spotlight-count');
-    const spotlightStatus = document.querySelector('.live-spotlight-status');
-    const spotlightBar = document.querySelector('.live-spotlight-progress-bar');
+    const serverCard = document.querySelector('[data-live-card="server"]');
+    const serverCount = document.querySelector('[data-live-server-count]');
+    const serverStatus = serverCard?.querySelector('.dual-live-status');
 
-    const discordCard = document.querySelector('[data-stat-card="discord"]');
+    const discordCard = document.querySelector('[data-live-card="discord"]');
+    const discordCount = document.querySelector('[data-live-discord-count]');
+    const discordStatus = discordCard?.querySelector('.dual-live-status');
 
     let serverPlayers = 0;
     let serverMax = 64;
     let discordOnline = 42;
-    let discordTotal = 250;
+    let discordTotal = 205;
 
     try {
       const res = await fetch(`https://servers-frontend.fivem.net/api/servers/single/${fiveMCode}`);
@@ -119,23 +121,11 @@
       discordTotal = Number(data?.approximate_member_count ?? discordTotal);
     } catch (e) {}
 
-    if (spotlightCount) spotlightCount.textContent = `${serverPlayers} / ${serverMax}`;
-    if (spotlightStatus) spotlightStatus.textContent = serverPlayers > 0 ? 'Server online' : 'Server erreichbar';
-    if (spotlightBar) {
-      const pct = Math.max(4, Math.min(100, serverMax ? (serverPlayers / serverMax) * 100 : 0));
-      spotlightBar.style.width = `${pct}%`;
-    }
+    if (serverCount) serverCount.textContent = `${serverPlayers} / ${serverMax}`;
+    if (serverStatus) serverStatus.textContent = serverPlayers > 0 ? 'Server live' : 'Server erreichbar';
 
-    if (discordCard) {
-      const strong = discordCard.querySelector('strong');
-      const copy = discordCard.querySelector('p');
-      if (strong) strong.innerHTML = `<span class="discord-count-number">${discordOnline} / ${discordTotal}</span><span class="discord-count-copy">Mitglieder online</span>`;
-      if (copy) {
-        copy.textContent = '';
-        copy.style.display = 'none';
-      }
-      
-    }
+    if (discordCount) discordCount.textContent = `${discordOnline} / ${discordTotal}`;
+    if (discordStatus) discordStatus.textContent = 'Mitglieder online';
 
     let headerBadge = document.querySelector('.header-live-badge');
     const headerActions = document.querySelector('.header-actions');
@@ -176,6 +166,5 @@
     badge.className = 'debug-badge';
     document.body.appendChild(badge);
   }
-  const bgName = getComputedStyle(document.body).getPropertyValue('--hero-image')?.match(/([^/']+\.(?:png|webp|jpg))/i)?.[1] || 'n/a';
-  badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg23</span><span>Discord-Panel direkt per PNG/HTML aktiv</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
+    badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg24</span><span>2 Live-Panels aktiv</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
 })();

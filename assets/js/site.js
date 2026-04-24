@@ -1,5 +1,5 @@
 (() => {
-  const DBG_VERSION = 'DBG-27';
+  const DBG_VERSION = 'DBG-28';
   const mobileToggle = document.querySelector('.mobile-menu-toggle');
   if (mobileToggle) {
     mobileToggle.addEventListener('click', () => document.body.classList.toggle('menu-open'));
@@ -135,17 +135,15 @@
       headerBadge.href = `https://cfx.re/join/${fiveMCode}`;
       headerBadge.target = '_blank';
       headerBadge.rel = 'noreferrer';
-      headerBadge.innerHTML = `
-        <span class="header-live-badge-logo"><img src="assets/media/logo-v4-cropped.png" alt="Inselleben RP Logo"></span>
-        <span class="header-live-badge-copy">
-          <span class="header-live-badge-state"><span class="status-dot is-live"></span>Server live</span>
-          <strong class="header-live-badge-value">0 / 64</strong>
-        </span>`;
       headerActions.prepend(headerBadge);
     }
     if (headerBadge) {
-      const value = headerBadge.querySelector('.header-live-badge-value');
-      if (value) value.textContent = `${serverPlayers} / ${serverMax}`;
+      headerBadge.innerHTML = `
+        <img class="header-live-badge-bg" src="assets/media/logo-v4-cropped.png?v=dbg28" alt="" aria-hidden="true">
+        <span class="header-live-badge-copy">
+          <span class="header-live-badge-state"><span class="status-dot is-live"></span>Server live</span>
+          <strong class="header-live-badge-value">${serverPlayers} / ${serverMax}</strong>
+        </span>`;
     }
   }
   if (isStartPage) updateLiveStats();
@@ -166,5 +164,5 @@
     badge.className = 'debug-badge';
     document.body.appendChild(badge);
   }
-    badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg26</span><span>Logo-Swap aktiv</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
+    badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg28</span><span>Logos größer + Header-Badge mit Hintergrundlogo</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
 })();

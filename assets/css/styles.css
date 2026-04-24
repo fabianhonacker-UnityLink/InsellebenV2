@@ -1602,204 +1602,110 @@ body::after{
 }
 
 
-/* === DBG-19 DISCORD PANEL VISUAL === */
+/* === DBG-23 DISCORD PANEL VISUAL === */
 .page-home .stat-card[data-stat-card="discord"]{
   position:relative !important;
   overflow:hidden !important;
   isolation:isolate;
-  background:
-    linear-gradient(180deg, rgba(21,14,43,.24), rgba(15,11,30,.30)) !important;
-  border:1px solid rgba(216,190,255,.18) !important;
+  background:rgba(18,10,34,.12) !important;
+  border:1px solid rgba(226,205,255,.22) !important;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.05),
-    0 20px 38px rgba(0,0,0,.24),
-    0 0 34px rgba(124,58,237,.12) !important;
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 22px 40px rgba(0,0,0,.24),
+    0 0 32px rgba(139,92,255,.14) !important;
+  backdrop-filter: blur(10px) saturate(1.14);
+  -webkit-backdrop-filter: blur(10px) saturate(1.14);
+}
+.page-home .stat-card[data-stat-card="discord"] .discord-panel-art{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  opacity:.86;
+  transform:scale(1.03);
+  filter:saturate(1.04) contrast(1.04) brightness(.92);
+  z-index:0;
+  pointer-events:none;
 }
 .page-home .stat-card[data-stat-card="discord"]::before{
   content:"";
   position:absolute;
   inset:0;
   background:
-    radial-gradient(circle at 16% 18%, rgba(255,181,85,.18), transparent 28%),
-    radial-gradient(circle at 82% 76%, rgba(168,85,247,.20), transparent 36%),
-    linear-gradient(135deg, rgba(16,10,34,.22), rgba(11,9,24,.08)),
-    var(--discord-bg, url("../media/discord-panel-bg-dbg19.webp")) center/cover no-repeat;
-  opacity:.34;
-  transform:scale(1.06);
-  filter:saturate(1.06) contrast(1.02);
-  z-index:-2;
+    radial-gradient(circle at 14% 80%, rgba(255,168,60,.10), transparent 18%),
+    radial-gradient(circle at 84% 20%, rgba(186,104,255,.16), transparent 28%),
+    linear-gradient(135deg, rgba(16,10,32,.26) 0%, rgba(16,10,32,.10) 34%, rgba(255,255,255,.02) 52%, rgba(12,8,24,.18) 100%);
+  z-index:1;
 }
 .page-home .stat-card[data-stat-card="discord"]::after{
   content:"";
   position:absolute;
   inset:0;
-  background:
-    linear-gradient(120deg, rgba(10,7,21,.22) 0%, rgba(10,7,21,.08) 30%, rgba(255,255,255,.02) 48%, rgba(10,7,21,.18) 100%);
-  backdrop-filter: blur(8px) saturate(1.05);
-  -webkit-backdrop-filter: blur(8px) saturate(1.05);
-  z-index:-1;
-}
-.page-home .stat-card[data-stat-card="discord"] .stat-label{
-  position:relative;
+  border-radius:inherit;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
   z-index:1;
 }
-.page-home .stat-card[data-stat-card="discord"] strong{
-  display:flex !important;
-  flex-direction:column !important;
-  align-items:flex-start !important;
-  gap:6px !important;
-  margin-top:auto;
-  position:relative;
-  z-index:1;
-}
-.page-home .stat-card[data-stat-card="discord"] .discord-count-number{
-  font-size:1.45rem;
-  line-height:1;
-  font-weight:800;
-  letter-spacing:-.03em;
-  text-shadow:0 2px 10px rgba(0,0,0,.22);
-}
-.page-home .stat-card[data-stat-card="discord"] .discord-count-copy{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  font-size:.86rem;
-  text-transform:uppercase;
-  letter-spacing:.16em;
-  color:#e9d4ff;
-  opacity:.94;
-}
-.page-home .stat-card[data-stat-card="discord"] .discord-count-copy::before{
-  content:"";
-  width:10px;
-  height:10px;
-  border-radius:999px;
-  background:#22c55e;
-  box-shadow:0 0 14px rgba(34,197,94,.6);
-}
-.page-home .stat-card[data-stat-card="discord"] p{
-  position:relative;
-  z-index:1;
-  margin-top:6px !important;
-  font-size:.95rem !important;
-  color:rgba(244,239,255,.86) !important;
-  text-shadow:0 1px 8px rgba(0,0,0,.16);
-}
-.page-home .stat-card[data-stat-card="discord"]:hover::before{
-  opacity:.46;
-  transform:scale(1.09);
-}
-.page-home .stat-card[data-stat-card="discord"]:hover{
-  border-color:rgba(236,216,255,.26) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.06),
-    0 24px 42px rgba(0,0,0,.28),
-    0 0 40px rgba(168,85,247,.18) !important;
-}
-@media (max-width:900px){
-  .page-home .stat-card[data-stat-card="discord"] .discord-count-number{
-    font-size:1.28rem;
-  }
-}
-
-
-/* === DBG-22 DISCORD PANEL REAL PNG VISIBLE === */
-.page-home .stat-card[data-stat-card="discord"]{
-  min-height:182px !important;
-  padding:18px 18px 16px !important;
-  display:flex !important;
-  flex-direction:column !important;
-  justify-content:flex-end !important;
-  position:relative !important;
-  overflow:hidden !important;
-  isolation:isolate !important;
-  background:linear-gradient(180deg, rgba(16,10,34,.54), rgba(12,8,24,.68)) !important;
-  border:1px solid rgba(220,190,255,.18) !important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 18px 36px rgba(0,0,0,.22), 0 0 30px rgba(124,58,237,.10) !important;
-}
-.page-home .stat-card[data-stat-card="discord"]::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(115deg, rgba(12,7,24,.92) 0%, rgba(12,7,24,.78) 32%, rgba(12,7,24,.36) 58%, rgba(12,7,24,.18) 100%),
-    radial-gradient(circle at 16% 18%, rgba(255,183,93,.16), transparent 28%),
-    radial-gradient(circle at 86% 72%, rgba(168,85,247,.24), transparent 36%),
-    var(--discord-bg, url("../media/discord-panel-bg-dbg22.png")) right -16px center / auto 128% no-repeat !important;
-  opacity:.98 !important;
-  filter:saturate(1.02) contrast(1.02) brightness(.98) !important;
-  z-index:-2;
-}
-.page-home .stat-card[data-stat-card="discord"]::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.008)),
-    linear-gradient(120deg, rgba(148,93,255,.06), transparent 44%, rgba(255,154,61,.05) 100%);
-  backdrop-filter:blur(2px) saturate(1.02);
-  -webkit-backdrop-filter:blur(2px) saturate(1.02);
-  z-index:-1;
-}
-.page-home .stat-card[data-stat-card="discord"] .stat-label,
-.page-home .stat-card[data-stat-card="discord"] strong,
-.page-home .stat-card[data-stat-card="discord"] p{
+.page-home .stat-card[data-stat-card="discord"] > *:not(.discord-panel-art){
   position:relative;
   z-index:2;
 }
 .page-home .stat-card[data-stat-card="discord"] .stat-label{
-  margin-bottom:auto !important;
-  max-width:42% !important;
+  color:rgba(241,233,255,.80);
 }
 .page-home .stat-card[data-stat-card="discord"] strong{
   display:flex !important;
   flex-direction:column !important;
   align-items:flex-start !important;
+  justify-content:flex-end !important;
   gap:8px !important;
-  margin:0 !important;
+  margin-top:auto;
+  min-height:88px;
 }
 .page-home .stat-card[data-stat-card="discord"] .discord-count-number{
-  font-size:2.05rem !important;
-  line-height:1 !important;
-  font-weight:900 !important;
-  letter-spacing:-.04em !important;
-  text-shadow:0 8px 24px rgba(0,0,0,.35) !important;
+  font-size:2.06rem;
+  line-height:.95;
+  font-weight:900;
+  letter-spacing:-.05em;
+  color:#fff;
+  text-shadow:0 10px 22px rgba(0,0,0,.34);
 }
 .page-home .stat-card[data-stat-card="discord"] .discord-count-copy{
-  display:inline-flex !important;
-  align-items:center !important;
-  gap:8px !important;
-  font-size:.88rem !important;
-  letter-spacing:.18em !important;
-  text-transform:uppercase !important;
-  color:#f4e8ff !important;
-  opacity:.96 !important;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  font-size:.88rem;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  color:#f6ebff;
+  text-shadow:0 2px 10px rgba(0,0,0,.28);
 }
 .page-home .stat-card[data-stat-card="discord"] .discord-count-copy::before{
   content:"";
-  width:10px;
-  height:10px;
+  width:11px;
+  height:11px;
   border-radius:999px;
-  background:#16e49b;
-  box-shadow:0 0 14px rgba(22,228,155,.46);
-  flex:0 0 auto;
+  background:#22c55e;
+  box-shadow:0 0 16px rgba(34,197,94,.62);
 }
+.page-home .stat-card[data-stat-card="discord"] p:empty,
 .page-home .stat-card[data-stat-card="discord"] p{
   display:none !important;
 }
-.page-home .stat-card[data-stat-card="discord"]:hover::before{
-  background-size:auto 136% !important;
-  filter:saturate(1.06) contrast(1.04) brightness(1.02) !important;
+.page-home .stat-card[data-stat-card="discord"]:hover .discord-panel-art{
+  opacity:.96;
+  transform:scale(1.07);
 }
-@media (max-width: 900px){
-  .page-home .stat-card[data-stat-card="discord"]{
-    min-height:170px !important;
-  }
-  .page-home .stat-card[data-stat-card="discord"]::before{
-    background-size:auto 120% !important;
-    background-position:right -26px center !important;
-  }
+.page-home .stat-card[data-stat-card="discord"]:hover{
+  border-color:rgba(242,224,255,.28) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.1),
+    0 26px 46px rgba(0,0,0,.28),
+    0 0 40px rgba(168,85,247,.18) !important;
+}
+@media (max-width:900px){
   .page-home .stat-card[data-stat-card="discord"] .discord-count-number{
-    font-size:1.78rem !important;
+    font-size:1.72rem;
   }
 }

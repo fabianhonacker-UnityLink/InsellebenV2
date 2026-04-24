@@ -1,5 +1,5 @@
 (() => {
-  const DBG_VERSION = 'DBG-22';
+  const DBG_VERSION = 'DBG-23';
   const mobileToggle = document.querySelector('.mobile-menu-toggle');
   if (mobileToggle) {
     mobileToggle.addEventListener('click', () => document.body.classList.toggle('menu-open'));
@@ -134,7 +134,7 @@
         copy.textContent = '';
         copy.style.display = 'none';
       }
-      discordCard.style.setProperty('--discord-bg', "url('assets/media/discord-panel-bg-dbg22.png')");
+      
     }
 
     let headerBadge = document.querySelector('.header-live-badge');
@@ -177,5 +177,5 @@
     document.body.appendChild(badge);
   }
   const bgName = getComputedStyle(document.body).getPropertyValue('--hero-image')?.match(/([^/']+\.(?:png|webp|jpg))/i)?.[1] || 'n/a';
-  badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg22</span><span>Discord-Panel PNG sichtbar aktiv</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
+  badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg23</span><span>Discord-Panel direkt per PNG/HTML aktiv</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
 })();

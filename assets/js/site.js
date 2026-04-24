@@ -1,5 +1,5 @@
 (() => {
-  const DBG_VERSION = 'DBG-24';
+  const DBG_VERSION = 'DBG-25';
   const mobileToggle = document.querySelector('.mobile-menu-toggle');
   if (mobileToggle) {
     mobileToggle.addEventListener('click', () => document.body.classList.toggle('menu-open'));
@@ -166,5 +166,5 @@
     badge.className = 'debug-badge';
     document.body.appendChild(badge);
   }
-    badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg24</span><span>2 Live-Panels aktiv</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
+    badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg25</span><span>2 Live-Panels + stärkere Bildsichtbarkeit</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
 })();

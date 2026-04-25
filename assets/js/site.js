@@ -1,5 +1,5 @@
 (() => {
-  const DBG_VERSION = 'DBG-28';
+  const DBG_VERSION = 'DBG-30';
   const mobileToggle = document.querySelector('.mobile-menu-toggle');
   if (mobileToggle) {
     mobileToggle.addEventListener('click', () => document.body.classList.toggle('menu-open'));
@@ -139,7 +139,7 @@
     }
     if (headerBadge) {
       headerBadge.innerHTML = `
-        <img class="header-live-badge-bg" src="assets/media/logo-v4-cropped.png?v=dbg28" alt="" aria-hidden="true">
+        <img class="header-live-badge-bg" src="assets/media/logo-v4-cropped.png?v=dbg29" alt="" aria-hidden="true">
         <span class="header-live-badge-copy">
           <span class="header-live-badge-state"><span class="status-dot is-live"></span>Server live</span>
           <strong class="header-live-badge-value">${serverPlayers} / ${serverMax}</strong>
@@ -164,5 +164,5 @@
     badge.className = 'debug-badge';
     document.body.appendChild(badge);
   }
-    badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg28</span><span>Logos größer + Header-Badge mit Hintergrundlogo</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
+    badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg30</span><span>Header-Logo stärker gezoomt · Hero kleiner</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
 })();

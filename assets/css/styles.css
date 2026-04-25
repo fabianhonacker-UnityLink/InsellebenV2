@@ -1942,3 +1942,85 @@ body::after{
     margin-left:-2% !important;
   }
 }
+
+/* === DBG-31 HEADER LOGO BIGGER + HERO COPY HIGHER === */
+.site-header .brand{
+  width:124px !important;
+  height:64px !important;
+  flex:0 0 124px !important;
+  overflow:hidden !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+.site-header .brand img.brand-header-logo{
+  width:122px !important;
+  height:auto !important;
+  max-width:none !important;
+  transform:translateY(1px) scale(1.08) !important;
+  transform-origin:center center !important;
+  filter:drop-shadow(0 12px 28px rgba(0,0,0,.38)) !important;
+}
+
+.page-home .hero-focus-section{
+  padding:8px 0 0 !important;
+}
+.page-home .hero-focus-inner{
+  transform:translateY(-18px) !important;
+}
+.page-home .hero-tagline-main{
+  margin-top:-20px !important;
+}
+.page-home .hero-buttons-centered{
+  margin-top:4px !important;
+}
+
+@media (max-width: 1280px){
+  .site-header .brand{
+    width:114px !important;
+    height:60px !important;
+    flex-basis:114px !important;
+  }
+  .site-header .brand img.brand-header-logo{
+    width:112px !important;
+  }
+  .page-home .hero-focus-inner{
+    transform:translateY(-14px) !important;
+  }
+}
+@media (max-width: 1040px){
+  .site-header .brand{
+    width:96px !important;
+    height:54px !important;
+    flex-basis:96px !important;
+  }
+  .site-header .brand img.brand-header-logo{
+    width:94px !important;
+  }
+  .page-home .hero-focus-inner{
+    transform:translateY(-10px) !important;
+  }
+  .page-home .hero-tagline-main{
+    margin-top:-14px !important;
+  }
+}
+@media (max-width: 760px){
+  .site-header .brand{
+    width:84px !important;
+    height:46px !important;
+    flex-basis:84px !important;
+  }
+  .site-header .brand img.brand-header-logo{
+    width:82px !important;
+    transform:translateY(0) scale(1.03) !important;
+  }
+  .page-home .hero-focus-inner{
+    transform:none !important;
+  }
+  .page-home .hero-tagline-main{
+    margin-top:-6px !important;
+  }
+  .page-home .hero-buttons-centered{
+    margin-top:2px !important;
+  }
+}

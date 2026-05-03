@@ -1208,7 +1208,7 @@ body::after{
 
 .debug-badge{
   position: fixed;
-  left: 12px;
+  right: 12px;
   bottom: 12px;
   z-index: 9999;
   display: flex;
@@ -1225,6 +1225,9 @@ body::after{
   font-size: 12px;
   line-height: 1.35;
   color: #f6f2ff;
+  opacity: .86;
+  pointer-events: none;
+  text-align: left;
 }
 .debug-badge strong{color:#ffc05a; font-size:13px;}
 @media (max-width: 900px){
@@ -1244,7 +1247,7 @@ body::after{
     width:min(100%, 11ch) !important;
     max-width:11ch !important;
   }
-  .debug-badge{font-size:11px; left:8px; right:8px; max-width:none;}
+  .debug-badge{font-size:11px; left:auto; right:8px; max-width:min(88vw,420px);}
 }
 
 

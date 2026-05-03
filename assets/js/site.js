@@ -1,5 +1,5 @@
 (() => {
-  const DBG_VERSION = 'DBG-35';
+  const DBG_VERSION = 'DBG-36';
   const mobileToggle = document.querySelector('.mobile-menu-toggle');
   if (mobileToggle) {
     mobileToggle.addEventListener('click', () => document.body.classList.toggle('menu-open'));
@@ -148,21 +148,15 @@
   }
   if (isStartPage) updateLiveStats();
 
+  // Debug-Build nicht mehr als schwebendes Panel anzeigen.
+  document.querySelectorAll('.debug-badge').forEach(el => el.remove());
 
-  // Debug badge on every page
-  const pageMap = {
-    'index.html': 'Startseite + Live-Stats',
-    'philosophie.html': 'Subpage Hero mittig',
-    'geschichte.html': 'Subpage Hero mittig',
-    'regelwerk.html': 'Subpage Hero mittig',
-    'team.html': 'Subpage Hero mittig',
-    'impressum.html': 'Subpage Hero mittig',
-  };
-  let badge = document.querySelector('.debug-badge');
-  if (!badge) {
-    badge = document.createElement('div');
-    badge.className = 'debug-badge';
-    document.body.appendChild(badge);
+  // Version klein im Footer anzeigen
+  const footerBottom = document.querySelector('.footer-bottom');
+  if (footerBottom && !footerBottom.querySelector('.footer-version')) {
+    const version = document.createElement('small');
+    version.className = 'footer-version';
+    version.textContent = DBG_VERSION;
+    footerBottom.appendChild(version);
   }
-    badge.innerHTML = `<strong>Debug-Build ${DBG_VERSION}</strong><span>${pageMap[currentPath] || (document.body.dataset.page || 'Seite')}</span><span>Stylesheet: styles.css?v=dbg35</span><span>Panel-Logos sauber rechtslastig · Hover lokal fix</span><span>FiveM: yg8z9k · Discord: YhVeud3Suz</span>`;
 })();

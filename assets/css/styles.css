@@ -2080,3 +2080,24 @@ body::after{
     top:51%;
   }
 }
+
+
+.debug-badge{
+  display:none !important;
+}
+
+.footer-bottom{
+  position:relative;
+}
+
+.footer-version{
+  position:absolute;
+  right:0;
+  bottom:-14px;
+  font-size:.68rem;
+  letter-spacing:.08em;
+  opacity:.46;
+  color:rgba(255,255,255,.56);
+  pointer-events:none;
+  user-select:none;
+}
